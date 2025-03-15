@@ -21,6 +21,8 @@ game = FishingGame()
 async def on_ready():
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
     print("------")
+    # SPAWN FISH WHEN LOADING THE BOT
+    game.spawn_fish(3)
 
 
 @bot.command()
@@ -37,7 +39,13 @@ async def fish(ctx):
 @bot.command()
 async def inventory(ctx):
     inventory = game.get_inventory()
-    await ctx.send(f"Here is your inventory: {', '.join(inventory)}!")
+    await ctx.send(f"Here is your inventory: {inventory}!")
+
+
+@bot.command()
+async def see_pond(ctx):
+    pond_fish = game.see_pond()
+    await ctx.send(f"Here are the fish in the pond: {pond_fish}")
 
 
 bot.run(os.getenv("DISCORD_TOKEN"))
