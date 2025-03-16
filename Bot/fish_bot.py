@@ -16,13 +16,15 @@ bot = commands.Bot(command_prefix="!", description=description, intents=intents)
 
 game = FishingGame()
 
+POND_SIZE = 3
+
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
     print("------")
-    # SPAWN FISH WHEN LOADING THE BOT
-    game.spawn_fish(3)
+    # SPAWN FISH WHEN LOADING THE BOT. This will change when considering multiple users
+    game.spawn_fish(POND_SIZE)
 
 
 @bot.command()

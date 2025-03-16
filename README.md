@@ -17,7 +17,7 @@ This is how I visualize the day to day interaction with the game:
 
 At the start of a new day, new fish show up in your pond and your habits are unticked. At any time, you can tick for completion of a habit, this gives you a random item that helps you with the fishing part of the game.
 
-You can decide to catch the fish whenever you like. When fishing you are presented with all the options for fish, (I will test with showing the fish species or all of them being unknown). Before you fish, you can decide to use any item to help your odds. 
+You can decide to catch the fish whenever you like. When fishing you are presented with all the options for fish, (I will test with showing the fish species or all of them being unknown). Before you fish, you can decide to use any item to help your odds.
 
 Since fish have a rarity that decides their chance of showing up and and a catch rate that decides the probability of successfuly catching it, the items affect those parts of the experience.
 
@@ -37,7 +37,7 @@ For the prototype, I want to test the effectiveness of having a recurring and "t
 
 _Note that everything here is subject to change since this is a prototype._
 
-The features included are going to be: 
+The features included are going to be:
 - X number of fish (I'll test with 3 to 5) will be taken from a pool (ha) and shown in the pond every day.
 - Being able to fish a certain number of times per day.
 - Items for improving catch rates, luring rarer fish and rerolling the pool.
@@ -54,7 +54,7 @@ These are features which would be nice to have but represent additional effort a
 
 - Economy. Selling fish, buying tank sizes or cosmetics.
 - Visualizing your fish rather than them being text in a Discord bot.
-    - Procedurally animating the fish. 
+    - Procedurally animating the fish.
 - Migrating to a web app or something more accesible.
 - Upgrading the pond capacity.
 - Having multiple fish tanks and variations of them.

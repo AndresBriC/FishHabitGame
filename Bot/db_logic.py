@@ -29,7 +29,7 @@ class FishDatabase:
         cursor = connection.cursor()
         # Insert fish if it's not in the table already
         query = """
-        INSERT INTO fish_list (name, rarity, catch_rate) 
+        INSERT INTO fish_list (name, rarity, catch_rate)
         VALUES (%s, %s, %s)
         ON CONFLICT (name)
         DO NOTHING;
@@ -62,7 +62,7 @@ class FishDatabase:
         except Exception as err:
             print(err)
             fish = None
-        
+
         cursor.close()
         connection.close()
         return fish

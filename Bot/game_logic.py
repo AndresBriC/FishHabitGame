@@ -16,7 +16,7 @@ class FishingGame:
 
     def catch_fish(self, fish):
         """
-        Still deciding on how fishing will work. 
+        Still deciding on how fishing will work.
         Probably will let the user decide which to fish instead of it being random.
         """
 
@@ -29,7 +29,7 @@ class FishingGame:
             print("D'ow you missed!")
             return None
 
-    def spawn_fish(self, num_fish:int):
+    def spawn_fish(self, num_fish: int):
         """
         Adds fish into the pond
         """
@@ -49,8 +49,10 @@ class FishingGame:
                 ],
             )
             # Get a random fish with that rarity from the DB
-            self.pond_fish.append(fishDB.sample_fish_from_rarity(connection, sampled_rarity))
-    
+            self.pond_fish.append(
+                fishDB.sample_fish_from_rarity(connection, sampled_rarity)
+            )
+
     # --- Info methods ---
 
     def see_pond(self):

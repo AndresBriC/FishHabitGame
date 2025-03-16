@@ -2,7 +2,7 @@ from Bot import db_logic
 from enum import Enum
 
 
-# Decided to use enums to prevent errors from typos, 
+# Decided to use enums to prevent errors from typos,
 # but the checks in the DB should also check for that
 class Rarity(Enum):
     COMMON = "common"
