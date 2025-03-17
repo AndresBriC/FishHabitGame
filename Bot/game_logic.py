@@ -1,4 +1,3 @@
-import random
 import numpy as np
 import db_logic
 
@@ -14,20 +13,23 @@ class FishingGame:
         }
         self.pond_fish = []
 
-    def catch_fish(self, fish):
+    def catch_fish(self, name):
         """
         Still deciding on how fishing will work.
         Probably will let the user decide which to fish instead of it being random.
         """
+        fishDB = db_logic.FishDatabase()
+        connection = fishDB.connect()
+        catch_rate = fishDB.get_fish_catch_rate(connection, name)
 
-        print(f"You found a {fish.species}")
-        if random.randrange(0, 100) < fish.catchRate:
-            print(f"You caught a {fish.species}!")
-            self.inventory.append(fish)
-            return fish
+        print(f"You found a {name}")
+        if np.random.rand() < catch_rate:
+            print(f"You caught a {name}!")
+            self.inventory.append(name)
+            return True
         else:
             print("D'ow you missed!")
-            return None
+            return False
 
     def spawn_fish(self, num_fish: int):
         """
@@ -59,10 +61,10 @@ class FishingGame:
         """
         Shows the fish currently in the pond
         """
-        return ", ".join(self.pond_fish)
+        return self.pond_fish
 
     def get_inventory(self):
         """
         Shows fish you've already caught
         """
-        return ", ".join(self.inventory)
+        return self.inventory

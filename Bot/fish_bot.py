@@ -18,6 +18,34 @@ game = FishingGame()
 
 POND_SIZE = 3
 
+# ---- VIEWS ----
+
+
+# Create a view with a button
+class ButtonView(discord.ui.View):
+    def __init__(self, buttons_info: list):
+        super().__init__()
+        self.buttons_info = buttons_info
+
+        for label in self.buttons_info:
+            # Create the button dynamically
+            button = discord.ui.Button(label=label, style=discord.ButtonStyle.primary)
+            button.callback = self.create_button_callback(label)
+            self.add_item(button)
+
+    def create_button_callback(self, label: str):
+        # Using nested functions, we don't need to create a new function for each button
+        async def button_callback(interaction: discord.Interaction):
+            fish_caught = game.catch_fish(label)
+            if fish_caught:
+                response = f"You caught a {label}"
+                await interaction.response.edit_message(content=response, view=None)
+            else:
+                response = "It got away"
+                await interaction.response.edit_message(content=response, view=None)
+
+        return button_callback
+
 
 @bot.event
 async def on_ready():
@@ -25,6 +53,9 @@ async def on_ready():
     print("------")
     # SPAWN FISH WHEN LOADING THE BOT. This will change when considering multiple users
     game.spawn_fish(POND_SIZE)
+
+
+# ---- COMMANDS ----
 
 
 @bot.command()
@@ -40,14 +71,23 @@ async def fish(ctx):
 
 @bot.command()
 async def inventory(ctx):
-    inventory = game.get_inventory()
+    inventory = ", ".join(game.get_inventory())
     await ctx.send(f"Here is your inventory: {inventory}!")
 
 
 @bot.command()
 async def see_pond(ctx):
-    pond_fish = game.see_pond()
+    pond_fish = ", ".join(game.see_pond())
     await ctx.send(f"Here are the fish in the pond: {pond_fish}")
+
+
+# Command to send a message with the button
+@bot.command()
+async def catch_fish(ctx):
+    pond_fish = game.see_pond()  # Maybe fetch this once
+    # Show all fish currently in pond and give the option to fish them
+    buttons_info = [str(fish) for fish in pond_fish]
+    await ctx.send("Click on of the buttons below:", view=ButtonView(buttons_info))
 
 
 bot.run(os.getenv("DISCORD_TOKEN"))

@@ -66,3 +66,24 @@ class FishDatabase:
         cursor.close()
         connection.close()
         return fish
+
+    @staticmethod
+    def get_fish_catch_rate(connection, name: str):
+        cursor = connection.cursor()
+        try:
+            cursor.execute(
+                "SELECT catch_rate FROM fish_list WHERE name = %s",
+                (name,),
+            )
+            record = cursor.fetchone()
+            catch_rate = record[0]
+            print(f"Read successful. catch_rate = {catch_rate}")
+            connection.commit()
+        except Exception as err:
+            print(err)
+            catch_rate = None
+
+        cursor.close()
+        connection.close()
+
+        return catch_rate
