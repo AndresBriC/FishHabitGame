@@ -7,7 +7,7 @@ TL;DR Do good habits, get cool fish.
 
 The general idea is that each day we a group of fish show up, and that's when you'll have an opportunity to grow your collection of fish. By working on positive habits, you'll get rewards that help you build that collection in different ways (either by improving catch rate, upping the chances of finding rare fish and other things I haven't thought about :O), so I'll be leaning on rewarding positive behaviour rather than harshly punishing misses.
 
-I want this to be a very chill experience that takes a small amount of time off your day, but has a big impact. My vision is to have a growing and ever more beautiful collection of fish that reflects your growth though your habits.
+I want this to be a very chill experience that takes a small amount of time off your day, but has a big impact. My vision is to have a growing and ever more beautiful collection of fish that reflects your growth though your habits. And in that positive and chill mindset, the philosophy for penalties will be more of a _win less_ instead of a _lose more_.
 
 Some inspirations for this are: Habitica, Webfishing, Duolingo, Animal Crossing and Pokémon.
 
