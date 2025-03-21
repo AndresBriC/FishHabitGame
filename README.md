@@ -31,6 +31,10 @@ I was thinking that MongoDB would be a good fit, especially for this phase of de
 
 I will be using Azure once I mount the project online.
 
+Pre-commit hooks are used to lint and format Python with Ruff and SQL with sqlfluff.
+
+These standards are checked when pushing or doing a PR to main using github actions.
+
 ## Prototype scope
 
 For the prototype, I want to test the effectiveness of having a recurring and "tangible" reason to come back to an action on the daily. Also seeing if the idea even works.
