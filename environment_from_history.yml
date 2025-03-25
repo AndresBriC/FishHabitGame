@@ -1,0 +1,12 @@
+name: FishGame
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - python-dotenv
+  - ipykernel
+  - psycopg2
+  - numpy
+  - pre-commit
+prefix: C:\Users\Prod\miniconda3\envs\FishGame
