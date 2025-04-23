@@ -80,6 +80,7 @@ Turns out my idea isn't that original :0
 - https://play.google.com/store/apps/details?id=cc.forestapp&referrer=utm_source%3Dofficalwebsite%26utm_medium%3Dbutton
 - https://habitsgarden.com/
 - https://play.google.com/store/apps/details?id=seekrtech.sleep
+- https://finchcare.com/
 
 ### Why this may work
 - https://youtu.be/_tpB-B8BXk0?feature=shared&t=346
