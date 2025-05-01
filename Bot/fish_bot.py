@@ -60,23 +60,26 @@ async def on_ready():
 
 @bot.command()
 async def hello(ctx):
+    """
+    Hi!
+    """
     await ctx.send("Hello!")
 
 
 @bot.command()
-async def fish(ctx):
-    caught_fish = game.catch_fish()
-    await ctx.send(f"You caught a {caught_fish}!")
-
-
-@bot.command()
 async def inventory(ctx):
+    """
+    Shows the items in your inventory"
+    """
     inventory = ", ".join(game.get_inventory())
     await ctx.send(f"Here is your inventory: {inventory}!")
 
 
 @bot.command()
 async def see_pond(ctx):
+    """
+    Shows current fish in the pond.
+    """
     pond_fish = ", ".join(game.see_pond())
     await ctx.send(f"Here are the fish in the pond: {pond_fish}")
 
@@ -84,6 +87,9 @@ async def see_pond(ctx):
 # Command to send a message with the button
 @bot.command()
 async def catch_fish(ctx):
+    """
+    Try fishing from the current fish in the pond
+    """
     pond_fish = game.see_pond()  # Maybe fetch this once
     # Show all fish currently in pond and give the option to fish them
     buttons_info = [str(fish) for fish in pond_fish]
