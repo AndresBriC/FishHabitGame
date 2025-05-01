@@ -65,6 +65,9 @@ These are features which would be nice to have but represent additional effort a
 - Making the action of fishing more interactive.
 - Doing something exciting with the fish. (Fighting bugs or sth idk).
 
+## ERD
+
+![ERD](./Assets/ERD_fishdb.png)
 
 ## References
 Turns out my idea isn't that original :0
