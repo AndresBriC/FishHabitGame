@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 
-from game_logic import FishingGame
+from fishbot.bot.game_logic import FishingGame
 
 load_dotenv()
 

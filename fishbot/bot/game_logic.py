@@ -1,5 +1,5 @@
 import numpy as np
-import db_logic
+from fishbot.bot import db_logic
 
 
 class FishingGame:
