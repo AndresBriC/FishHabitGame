@@ -1,1 +1,0 @@
-CREATE DATABASE fish_game;
