@@ -68,6 +68,40 @@ async def hello(ctx):
 
 
 @bot.command()
+async def register(ctx):
+    """
+    Register to use the habit fishing bot!
+    """
+
+    user_id = str(ctx.author.id)
+    username = ctx.author.name
+
+    success, message = game.register_user(user_id, username)
+
+    if success:
+        embed = discord.Embed(
+            title="Welcome to Fish Habit Game",
+            description=message,
+            color=discord.Color.blue(),
+        )
+        embed.add_field(
+            name="How to play",
+            value=(
+                "1. Create habits with `!habit add [name]`\n"
+                "2. Complete habits daily with `!habit complete [name]`\n"
+                "3. Use your fishing attempts with `!catch_fish`\n"
+                "4. Build your collection and earn rewards!"
+            ),
+        )
+    else:
+        embed = discord.Embed(
+            title="Registration issue", description=message, color=discord.Color.red()
+        )
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 async def inventory(ctx):
     """
     Shows the items in your inventory"

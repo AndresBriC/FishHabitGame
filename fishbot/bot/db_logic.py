@@ -55,7 +55,7 @@ class FishDatabase:
 
             # Insert new user
             query = """
-            INSERT INTO users (user_idm username, fishing_attempts_left, fishing_attempts_reset_at)
+            INSERT INTO users (user_id, username, fishing_attempts_left, fishing_attempts_reset_at)
             VALUES (%s, %s, 5, %s)
             """
             cursor.execute(query, (user_id, username, reset_time))

@@ -4,6 +4,7 @@ from fishbot.bot import db_logic
 
 class FishingGame:
     def __init__(self):
+        self.db = db_logic.FishDatabase()
         self.inventory = []
         self.spawn_probabilities = {
             "common": 0.6,
@@ -13,14 +14,29 @@ class FishingGame:
         }
         self.pond_fish = []
 
+    def register_user(self, user_id, username):
+        """
+        Register a new user for the fishing game
+
+        Args:
+            user_id (str): Discord user ID
+            username (str): Discord username
+
+        Returns:
+            tuple: (success (bool), message (str))
+        """
+
+        connection = self.db.connect()
+
+        return self.db.register_user(connection, user_id, username)
+
     def catch_fish(self, name):
         """
         Still deciding on how fishing will work.
         Probably will let the user decide which to fish instead of it being random.
         """
-        fishDB = db_logic.FishDatabase()
-        connection = fishDB.connect()
-        catch_rate = fishDB.get_fish_catch_rate(connection, name)
+        connection = self.db.connect()
+        catch_rate = self.db.get_fish_catch_rate(connection, name)
 
         print(f"You found a {name}")
         if np.random.rand() < catch_rate:
@@ -35,11 +51,10 @@ class FishingGame:
         """
         Adds fish into the pond
         """
-        fishDB = db_logic.FishDatabase()
 
         self.pond_fish = []
         for i in range(num_fish):
-            connection = fishDB.connect()
+            connection = self.db.connect()
             # Get the rarity of the fish that will spawn
             sampled_rarity = np.random.choice(
                 ["common", "uncommon", "rare", "exotic"],
@@ -52,7 +67,7 @@ class FishingGame:
             )
             # Get a random fish with that rarity from the DB
             self.pond_fish.append(
-                fishDB.sample_fish_from_rarity(connection, sampled_rarity)
+                self.db.sample_fish_from_rarity(connection, sampled_rarity)
             )
 
     # --- Info methods ---
