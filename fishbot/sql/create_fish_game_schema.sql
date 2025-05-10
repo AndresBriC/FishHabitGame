@@ -4,6 +4,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fishing_attempts_left INTEGER DEFAULT 5,  -- Daily fishing limit
     fishing_attempts_reset_at TIMESTAMP,  -- When attempts will refresh
+    pond_size INTEGER DEFAULT 3,
     current_rod_id INTEGER  -- Reference to equipped rod
 );
 
@@ -56,7 +57,8 @@ CREATE TABLE daily_pond (
     user_id VARCHAR(255) NOT NULL REFERENCES users (user_id),
     fish_id INTEGER NOT NULL REFERENCES fish_types (fish_id),
     spawned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    expires_at TIMESTAMP,  -- When this fish despawns (daily reset)
+    -- When this fish despawns (daily reset)
+    expires_at TIMESTAMP DEFAULT (CURRENT_DATE + INTERVAL '1 day')::TIMESTAMP,
     caught BOOLEAN DEFAULT FALSE  -- Whether user has caught this spawn
 );
 
