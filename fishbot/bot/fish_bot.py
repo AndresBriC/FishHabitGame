@@ -52,8 +52,6 @@ class ButtonView(discord.ui.View):
 async def on_ready():
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
     print("------")
-    # SPAWN FISH WHEN LOADING THE BOT. This will change when considering multiple users
-    game.spawn_fish(POND_SIZE)
 
 
 # ---- COMMANDS ----
@@ -104,7 +102,7 @@ async def register(ctx):
 @bot.command()
 async def inventory(ctx):
     """
-    Shows the items in your inventory"
+    Shows the items in your inventory
     """
     inventory = ", ".join(game.get_inventory())
     await ctx.send(f"Here is your inventory: {inventory}!")
@@ -115,7 +113,9 @@ async def see_pond(ctx):
     """
     Shows current fish in the pond.
     """
-    pond_fish = ", ".join(game.see_pond())
+    user_id = str(ctx.author.id)
+    pond_fish = game.see_pond(user_id)
+    pond_fish = ", ".join(pond_fish)
     await ctx.send(f"Here are the fish in the pond: {pond_fish}")
 
 
@@ -125,7 +125,8 @@ async def catch_fish(ctx):
     """
     Try fishing from the current fish in the pond
     """
-    pond_fish = game.see_pond()  # Maybe fetch this once
+    user_id = str(ctx.author.id)
+    pond_fish = game.see_pond(user_id)  # Maybe fetch this once
     # Show all fish currently in pond and give the option to fish them
     buttons_info = [str(fish) for fish in pond_fish]
     await ctx.send("Click on of the buttons below:", view=ButtonView(buttons_info))
