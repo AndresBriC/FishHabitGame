@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 
-from game_logic import FishingGame
+from fishbot.bot.game_logic import FishingGame
 
 load_dotenv()
 
@@ -52,8 +52,6 @@ class ButtonView(discord.ui.View):
 async def on_ready():
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
     print("------")
-    # SPAWN FISH WHEN LOADING THE BOT. This will change when considering multiple users
-    game.spawn_fish(POND_SIZE)
 
 
 # ---- COMMANDS ----
@@ -68,9 +66,43 @@ async def hello(ctx):
 
 
 @bot.command()
+async def register(ctx):
+    """
+    Register to use the habit fishing bot!
+    """
+
+    user_id = str(ctx.author.id)
+    username = ctx.author.name
+
+    success, message = game.register_user(user_id, username)
+
+    if success:
+        embed = discord.Embed(
+            title="Welcome to Fish Habit Game",
+            description=message,
+            color=discord.Color.blue(),
+        )
+        embed.add_field(
+            name="How to play",
+            value=(
+                "1. Create habits with `!habit add [name]`\n"
+                "2. Complete habits daily with `!habit complete [name]`\n"
+                "3. Use your fishing attempts with `!catch_fish`\n"
+                "4. Build your collection and earn rewards!"
+            ),
+        )
+    else:
+        embed = discord.Embed(
+            title="Registration issue", description=message, color=discord.Color.red()
+        )
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 async def inventory(ctx):
     """
-    Shows the items in your inventory"
+    Shows the items in your inventory
     """
     inventory = ", ".join(game.get_inventory())
     await ctx.send(f"Here is your inventory: {inventory}!")
@@ -81,7 +113,9 @@ async def see_pond(ctx):
     """
     Shows current fish in the pond.
     """
-    pond_fish = ", ".join(game.see_pond())
+    user_id = str(ctx.author.id)
+    pond_fish = game.see_pond(user_id)
+    pond_fish = ", ".join(pond_fish)
     await ctx.send(f"Here are the fish in the pond: {pond_fish}")
 
 
@@ -91,7 +125,8 @@ async def catch_fish(ctx):
     """
     Try fishing from the current fish in the pond
     """
-    pond_fish = game.see_pond()  # Maybe fetch this once
+    user_id = str(ctx.author.id)
+    pond_fish = game.see_pond(user_id)  # Maybe fetch this once
     # Show all fish currently in pond and give the option to fish them
     buttons_info = [str(fish) for fish in pond_fish]
     await ctx.send("Click on of the buttons below:", view=ButtonView(buttons_info))
