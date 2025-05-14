@@ -32,4 +32,4 @@ jobs:
         run: pip install sqlfluff
 
       - name: Run SQLFluff (PostgreSQL Linting)
-        run: sqlfluff lint --dialect postgres **/*.sql
+        run: sqlfluff lint --dialect postgres fishbot/**/*.sql
