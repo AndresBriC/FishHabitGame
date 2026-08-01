@@ -55,6 +55,38 @@ The original Discord bot remains in the repository as historical MVP reference; 
 - [Game rules](docs/game-rules.md)
 - [Decision log](docs/decisions.md)
 
+## Development setup
+
+The new web application is organized into two independently runnable projects:
+
+- `backend/`: FastAPI API and Alembic migrations.
+- `frontend/`: React, TypeScript, and Vite client.
+
+### Backend
+
+Requires Python 3.12 or later.
+
+```powershell
+cd backend
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -e .
+.\.venv\Scripts\python -m uvicorn app.main:app --reload
+```
+
+The API is available at `http://localhost:8000`; interactive API documentation is at `/docs`.
+
+### Frontend
+
+Requires Node.js 20.19 or later and pnpm.
+
+```powershell
+cd frontend
+pnpm install
+pnpm dev
+```
+
+The frontend is available at `http://localhost:5173` and calls the API at `http://localhost:8000/api/v1` by default.
+
 ---
 
 ## ERD
