@@ -36,18 +36,24 @@ The better your real-life streaks, the better your chances of landing rare or ex
 
 ---
 
-## Tech Stack
+## Target Tech Stack
 
-- **Backend**: Python
-- **Bot Interface**: Discord (`discord.py`)
+- **Frontend**: React, TypeScript, Vite
+- **Backend**: Python, FastAPI
 - **Database**: PostgreSQL
 - **DevOps**:
   - GitHub Actions (CI)
-  - Pre-commit hooks:
-    - `ruff` for Python linting/formatting
-    - `sqlfluff` for SQL linting
+  - Automated formatting, linting, and tests
 
-> Hosting will eventually move to **Azure**.
+The original Discord bot remains in the repository as historical MVP reference; it is not part of the target application.
+
+## Project Documentation
+
+- [Product vision](docs/product.md)
+- [Roadmap](docs/roadmap.md)
+- [Architecture](docs/architecture.md)
+- [Game rules](docs/game-rules.md)
+- [Decision log](docs/decisions.md)
 
 ---
 
